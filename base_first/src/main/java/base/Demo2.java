@@ -1,9 +1,11 @@
+package base;
+
 /**
  * @author Linker
  * @date 2/11/2023 4:07 AM
  * @description：
  */
-public class demo2 {
+public class Demo2 {
     /**
      * Java 和 C++ 的区别
      * 1. 指针 - C++有指针
@@ -101,8 +103,8 @@ public class demo2 {
     }
 
     public static void main(String[] args) {
-        demo2 d = new demo2();
-        demo2.staticMethod();//类.方法名
+        Demo2 d = new Demo2();
+        Demo2.staticMethod();//类.方法名
         d.method();//对象.方法名
     }
 
@@ -118,7 +120,7 @@ public class demo2 {
      * 重载和重写
      * 重载 - 输入数据不同，有不同处理
      * 重写 - 子类继承父类，同方法，输入数据相同，有不同结果(覆盖父类方法)
-     *
+     * <p>
      * 重载是同一个类中多个同名方法根据不同的传参来执行不用的逻辑处理
      */
     StringBuilder sb = new StringBuilder();
@@ -127,13 +129,100 @@ public class demo2 {
     /**
      * 重写
      * 1.方法名相同、参数列表相同 - 子类返回值类型比父类方法返回值更小或相等
-     *                       - 子类抛出异常范围小于等于父类
-     *                       - 访问修饰符范围大于等于父类
+     * - 子类抛出异常范围小于等于父类
+     * - 访问修饰符范围大于等于父类
      * 2.父类修饰符 private\final\static  子类不能重写 - static修饰可以被再次声明
      * 3.构造方法无法被重写
+     * <p>
+     * 重写是子类对父类方法的重新改造，外部样子不变，内部逻辑改变
+     * 方法的重写要遵循“两同两小一大”
+     * - “两同”即方法名相同、形参列表相同
+     * - “两小”指的是子类方法返回值类型应比父类方法返回值类型更小或相等，子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等
+     * - “一大”指的是子类方法的访问权限应比父类方法的访问权限更大或相等。
+     * <p>
+     * 重写的返回值
+     * 父void -> 子void
+     * 父 返回引用类型 -> 子 返回引用类型或引用类型的子类
      */
+    public class Animal {
+        public String name() {
+            return "动物";
+        }
+    }
 
+    public class Cat extends Animal {
+        @Override
+        public String name() {
+//            return super.name();
+            return "猫";
+        }
 
+        public Cat cat() {
+            return new Cat();
+        }
+    }
+
+    public class Kitty extends Cat {
+        @Override
+        public String name() {
+            return "小猫";
+        }
+
+        @Override
+        public Cat cat() {
+            return new Kitty(); //返回引用类型的子类
+        }
+    }
+
+    /**
+     * 可变长参数
+     * 传入参数不定长度
+     * - 可变参数只能作为最后一个参数，前面可以有或无参数
+     */
+    public static void method(String... args) {
+    }
+
+    public static void method2(String arg1, String... args) {
+    }
+
+    /**
+     * - 遇到方法重载，优先匹配固定参数
+     * - Java 可变参数编译后转化为数组(查看.class文件)
+     */
+    public static class VariableLengthArgument {
+        public static void printVariable(String... args) {
+            for (String s : args
+            ) {
+                System.out.println(s);
+            }
+        }
+        public static void printVariable(String arg1, String arg2){
+            System.out.println(arg1 + arg2);
+        }
+        public static void printVariable2(String... args){
+            String[] var1 = args;
+            int var2 = args.length;
+
+            for (int i = 0; i < var2; i++) {
+                String s = var1[i];
+                System.out.println(s);
+            }
+        }
+    }
+    /**
+     * 基本数据类型 8种
+     * - 6种数字类型(4种整数型 - byte、short、int、long\ 2种浮点型 - float、double)
+     * - 1种字符型 - char
+     * - 1种布尔型 - boolean
+     *
+     */
+    char a = 'a';
+    String b = "abc";
+
+    /**
+     * 基本类型和包装类型
+     *
+     */
 
 
 

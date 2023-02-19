@@ -1,10 +1,14 @@
+package base;
+
 /**
  * @author Linker
  * @date 2/10/2023 11:43 PM
  * @description：the bases of Java first
  * 封装、继承、多态
+ *
+ *  - 结构图？
  */
-public class demo1 {
+public class Demo1 {
 
     public static void main(String[] args) {
         System.out.println("Hello world");
